@@ -1,0 +1,103 @@
+@font-face {
+    font-family: 'Passengers Script';
+    src: url('../assets/fonts/Passengers\ Script.otf') format('otf');
+}
+
+:root {
+    --color-primary-800: #1D2517;
+    --color-primary-600: #2B3A21;
+    --color-primary-400: #3A4F2B;
+    --color-primary-200: #4A6635;
+
+    --color-secondary-800: #39401E;
+    --color-secondary-600: #5E6A2C;
+    --color-secondary-400: #85983A;
+    --color-secondary-200: #AEC848;
+
+    --color-green-800: #20391F;
+    --color-green-600: #2F5E2F;
+    --color-green-400: #3D853F;
+    --color-green-200: #4CAF50;
+
+    --color-blue-800: #161537;
+    --color-blue-600: #191D5A;
+    --color-blue-400: #16267F;
+    --color-blue-200: #002FA7;
+    
+    --background-color-800: #808074;
+    --background-color-600: #B9B9A6;
+    --background-color-400: #F5F5DC;
+    --background-color-200: #F8F9FA;
+
+    --text-color-800: #1A1A1A;
+    --text-color-500: #808080;
+    --text-color-200: #F5F5F5;
+}
+
+html {
+  font-size: 62.5%; /* 1rem equivale a 10px */
+}
+
+h1, h2, h3, h4, h5, .subtitle {
+    font-family: Poppins, sans-serif;
+    line-height: 120%;
+    letter-spacing: 1%;
+}
+
+h1 {
+    font-size: 4.8rem;
+    font-weight: bold;
+    letter-spacing: 2%;
+}
+
+h2 {
+    font-size: 3.2rem;
+    font-weight: bold;
+}
+
+h3 {
+    font-size: 2.4rem;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 1.6rem;
+    font-weight: semi-bold;
+}
+
+h5 {
+    font-size: 1.4rem;
+    font-weight: semi-bold;
+}
+
+.display {
+    font-family: Passengers Script, cursive;
+    font-size: 4.8rem;
+    font-weight: regular;
+    letter-spacing: 2%;
+}
+
+.subtitle {
+    font-size: 3.2rem;
+    font-weight: medium;
+}
+
+.subtitle-2 {
+    font-size: 2.4rem;
+    font-weight: medium;
+}
+
+.p {
+    font-family: Nunito, sans-serif;
+    font-weight: medium;
+    line-height: 180%;
+    letter-spacing: 4%;
+}
+
+.paragraph {
+    font-size: 1.6rem;
+}
+
+.paragraph-2 {
+    font-size: 1.4rem;
+}
