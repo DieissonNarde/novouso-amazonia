@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 @font-face {
-    font-family: 'Passengers Script';
-    src: url('../assets/fonts/Passengers\ Script.otf') format('otf');
+    font-family: "PassengersScript";
+    src: url("/src/assets/fonts/Passengers\ Script.ttf") format("ttf");
+    
 }
 
 :root {
@@ -38,8 +41,8 @@ html {
   font-size: 62.5%; /* 1rem equivale a 10px */
 }
 
-h1, h2, h3, h4, h5, .subtitle {
-    font-family: Poppins, sans-serif;
+h1, h2, h3, h4, h5 {
+    font-family: "Poppins", sans-serif;
     line-height: 120%;
     letter-spacing: 1%;
 }
@@ -71,33 +74,33 @@ h5 {
 }
 
 .display {
-    font-family: Passengers Script, cursive;
-    font-size: 4.8rem;
-    font-weight: regular;
-    letter-spacing: 2%;
+    font-family: "PassengersScript";
+    font-size: 3.8rem;
+    letter-spacing: 1%;
+}
+
+.subtitle, .subtitle-2, p {
+    font-family: "Nunito", sans-serif;
+    font-weight: lighter;
 }
 
 .subtitle {
-    font-size: 3.2rem;
-    font-weight: medium;
+    font-size: 1.8rem;
 }
 
 .subtitle-2 {
-    font-size: 2.4rem;
-    font-weight: medium;
+    font-size: 1.4rem;
 }
 
-.p {
-    font-family: Nunito, sans-serif;
+p {
+    font-family: "Nunito", sans-serif;
     font-weight: medium;
+    font-size: 1.4rem;
     line-height: 180%;
     letter-spacing: 4%;
+    color: var(--text-color-800);
 }
 
 .paragraph {
     font-size: 1.6rem;
-}
-
-.paragraph-2 {
-    font-size: 1.4rem;
 }
