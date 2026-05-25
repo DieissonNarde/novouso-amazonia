@@ -1,0 +1,24 @@
+.input-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    width: 100%;
+}
+
+.input-form label {
+    font-family: Nunito, sans-serif;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: var(--text-color-800);
+}
+
+.input-form input {
+    background-color: var(--background-color-400);
+    border: 1px solid var(--color-primary-800);
+    border-radius: 1.4rem;
+    padding: 1.4rem 1.8rem;
+    font-size: 1.6rem;
+    font-family: Nunito, sans-serif;
+    font-weight: bold;
+    color: var(--text-color-500);
+}
