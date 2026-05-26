@@ -1,7 +1,6 @@
 .action-button {
     background-color: var(--color-blue-200);
-    padding: 1.6rem 0;
-    width: 100%;
+    padding-block: 1.6rem;
     font-family: "Poppins", sans-serif;
     font-size: 1.8rem;
     font-weight: 600;
