@@ -3,7 +3,6 @@
 @font-face {
     font-family: "PassengersScript";
     src: url("/src/assets/fonts/Passengers\ Script.ttf") format("ttf");
-    
 }
 
 :root {
@@ -26,7 +25,7 @@
     --color-blue-600: #191D5A;
     --color-blue-400: #16267F;
     --color-blue-200: #002FA7;
-    
+
     --background-color-800: #808074;
     --background-color-600: #B9B9A6;
     --background-color-400: #F5F5DC;
@@ -38,10 +37,19 @@
 }
 
 html {
-  font-size: 62.5%; /* 1rem equivale a 10px */
+    font-size: 62.5%;
+    /* 1rem equivale a 10px */
 }
 
-h1, h2, h3, h4, h5 {
+body {
+    background-color: var(--background-color-200);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
     font-family: "Poppins", sans-serif;
     line-height: 120%;
     letter-spacing: 1%;
@@ -79,7 +87,8 @@ h5 {
     letter-spacing: 1%;
 }
 
-.subtitle, .subtitle-2, p {
+.subtitle,
+.subtitle-2 {
     font-family: "Nunito", sans-serif;
     font-weight: lighter;
 }
@@ -96,7 +105,7 @@ p {
     font-family: "Nunito", sans-serif;
     font-weight: medium;
     font-size: 1.4rem;
-    line-height: 180%;
+    line-height: 140%;
     letter-spacing: 4%;
     color: var(--text-color-800);
 }
