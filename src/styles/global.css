@@ -37,12 +37,17 @@
 }
 
 html {
-    font-size: 62.5%;
-    /* 1rem equivale a 10px */
+    font-size: 62.5%; /* 1rem equivale a 10px */
 }
 
 body {
     background-color: var(--background-color-200);
+}
+
+.container {
+  width: 80%;
+  max-width: 1280px;
+  margin-inline: auto;
 }
 
 h1,
