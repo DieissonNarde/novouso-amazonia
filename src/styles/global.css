@@ -106,8 +106,11 @@ h5 {
     font-size: 1.4rem;
 }
 
-p {
+p, span, a {
     font-family: "Nunito", sans-serif;
+}
+
+p {
     font-weight: medium;
     font-size: 1.4rem;
     line-height: 140%;
