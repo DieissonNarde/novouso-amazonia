@@ -2,7 +2,10 @@
 
 @font-face {
     font-family: "PassengersScript";
-    src: url("/src/assets/fonts/Passengers\ Script.ttf") format("ttf");
+    src: url("/src/assets/fonts/passengers_script-webfont.woff2") format("woff2"),
+        url("/src/assets/fonts/passengers_script-webfont.woff") format("woff");
+    font-style: cursive;
+    font-display: swap;
 }
 
 :root {
