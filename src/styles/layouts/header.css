@@ -1,0 +1,29 @@
+.header {
+    background-color: var(--background-color-400);
+    height: 8rem;
+}
+
+.header .container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.header .container a .logo {
+    height: 7.8rem;
+    width: auto;
+}
+
+.header .container .action-button {
+    padding: 1.4rem 2.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.header .container .action-button img {
+    height: 2rem;
+    width: auto;
+}
