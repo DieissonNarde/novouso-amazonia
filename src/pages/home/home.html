@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="/src/styles/components/input-search.css">
     <link rel="stylesheet" href="/src/styles/components/filter-button.css">
     <link rel="stylesheet" href="/src/styles/components/item-card.css">
+    <link rel="stylesheet" href="/src/styles/components/select-form.css">
 
     <title>NovoUso Amazônia</title>
 </head>
@@ -59,6 +60,56 @@
                 <img src="/src/assets/icons/FilterFilled.svg" alt="ícone de filtro">
                 <span>Filtros</span>
             </button>
+        </div>
+
+        <div class="filter-container">
+            <div class="select-form">
+                <label for="category">Categoria</label>
+                <select id="category" name="category">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="moveis">Móveis</option>
+                    <option value="eletro">Eletrodomésticos</option>
+                    <option value="outros">Outros</option>
+                </select>
+            </div>
+
+            <div class="select-form">
+                <label for="type-offer">Tipo de oferta</label>
+                <select id="type-offer" name="type-offer">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="doacao">Doação</option>
+                    <option value="lance-livre">Lance livre</option>
+                    <option value="venda">Venda</option>
+                </select>
+            </div>
+
+            <div class="select-form">
+                <label for="uf">Estado</label>
+                <select id="uf" name="uf">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="RO">Rondônia</option>
+                    <option value="AM">Amazonas</option>
+                    <option value="RR">Roraima</option>
+                    <option value="PA">Pará</option>
+                    <option value="AC">Acre</option>
+                    <option value="AP">Amapá</option>
+                    <option value="TO">Tocantins</option>
+                </select>
+            </div>
+
+            <div class="select-form">
+                <label for="city">Cidade</label>
+                <select id="city" name="city">
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="porto-velho">Porto Velho</option>
+                    <option value="manaus">Manaus</option>
+                    <option value="boa-vista">Boa Vista</option>
+                    <option value="belem">Belém</option>
+                    <option value="rio-branco">Rio Branco</option>
+                    <option value="macapa">Macapá</option>
+                    <option value="palmas">Palmas</option>
+                </select>
+            </div>
         </div>
 
         <div class="items-container">

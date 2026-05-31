@@ -1,0 +1,30 @@
+.select-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    width: 24rem;
+}
+
+.select-form label {
+    font-family: Nunito, sans-serif;
+    font-weight: bold;
+    font-size: 1.6rem;
+    color: var(--text-color-800);
+}
+
+.select-form select {
+    background-color: var(--background-color-400);
+    border: 1px solid var(--color-primary-800);
+    border-radius: 1.4rem;
+    padding: 1.4rem 1.8rem;
+    font-size: 1.6rem;
+    font-family: Nunito, sans-serif;
+    font-weight: medium;
+    color: var(--text-color-500);
+
+    appearance: none;
+    background-image: url('/src/assets/icons/CaretDownOutlined.svg');
+    background-repeat: no-repeat;
+    background-position: right 1.8rem center;
+    background-size: 2rem;
+}
