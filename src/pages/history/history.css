@@ -1,0 +1,20 @@
+main {
+    margin-block: 8rem;
+}
+
+main .history-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.4rem;
+}
+
+main .history-header p.display {
+    color: var(--color-primary-400);
+}
+
+main .items-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
