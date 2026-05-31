@@ -17,12 +17,6 @@ main .search-container .input-search {
     width: 86%;
 }
 
-main .items-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-}
-
 main .filter-container {
     display: flex;
     justify-content: space-between;
@@ -31,4 +25,10 @@ main .filter-container {
 
     border: 1px solid var(--color-primary-800);
     border-radius: 1.2rem;
+}
+
+main .items-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
