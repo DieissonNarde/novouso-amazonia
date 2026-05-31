@@ -1,0 +1,17 @@
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 0.8rem;
+
+    font-family: Poppins, sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--text-color-800);
+    text-decoration: none;
+}
+
+.back-button img {
+    height: 2.4rem;
+}
