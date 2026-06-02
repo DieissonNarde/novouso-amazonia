@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/src/styles/vendor/reset.css">
+    <link rel="stylesheet" href="/src/styles/global.css">
+
+    <link rel="stylesheet" href="./add-item.css">
+
+    <link rel="stylesheet" href="/src/styles/layouts/header.css">
+
+    <link rel="stylesheet" href="/src/styles/components/action-button.css">
+    <link rel="stylesheet" href="/src/styles/components/navbar.css">
+    <link rel="stylesheet" href="/src/styles/components/select-form.css">
+    <link rel="stylesheet" href="/src/styles/components/input-form.css">
+
+    <title>Cadastro de item - NovoUso Amazônia</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="/">
+                <img src="/src/assets/images/logo-novouso-amazonia.webp" alt="Logo NovoUso Amazônia" class="logo">
+            </a>
+            
+            <button class="action-button">
+                <img src="/src/assets/icons/PlusOutlined.svg" alt="Ícone de adição">
+                Adicionar item
+            </button>
+            
+            <nav class="navbar">
+                <ul>
+                    <li><a href="/"><img src="/src/assets/icons/BellFilled.svg" alt="Ícone de notificação"></a></li>
+                    <li class="drop-hover">
+                        <a href="#">Dieisson Narde</a>
+                        <div class="drop">
+                            <a href="">Minha conta</a>
+                            <a href="">Histórico</a>
+                            <a href="">Sair da conta</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+            
+        </div>
+    </header>
+
+    <main class="container">
+        <h2>Adicionar um novo item</h2>
+        <p class="paragraph">Dê um novo uso para o que não usa mais.</p>
+        
+        <form action="">
+            <div class="form-box">
+                <div class="form-title-wrap">
+                    <div>
+                        <img src="/src/assets/icons/FileImageFilled.svg" alt="Ícone de arquivo de imagem">
+                        <h3>Fotos do item</h3>
+                    </div>
+
+                    <p class="paragraph">Adicione até 6 fotos para mostrar o estado do item</p>
+                </div>
+                
+
+                <input type="file" name="item-images" id="item-images">
+            </div>
+
+            <div class="form-box">
+                <div class="form-title-wrap">
+                    <div>
+                        <img src="/src/assets/icons/InboxOutlined.svg" alt="Ícone de arquivo de imagem">
+                        <h3>Informações básicas</h3>
+                    </div>
+                    
+                    <p class="paragraph">Descreva o item que você quer disponibilizar</p>
+                </div>
+                
+                <div class="input-form">
+                    <label for="item-title">Título do item</label>
+                    <input id="item-title" type="text" placeholder="Ex: 2 caixas de cerâmicas, telhas romanas, sementes de planta..." required>
+                </div>
+
+                <div class="input-form">
+                    <label for="item-description">Descrição</label>
+                    <textarea id="item-description" name="item-description" rows="4" placeholder="Descreva bem com detalhes o seu item" required></textarea>
+                </div>
+
+                <div class="form-input-wrap">
+                    <div class="select-form">
+                        <label for="category">Categoria</label>
+                        <select id="category" name="category">
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="moveis">Móveis</option>
+                            <option value="eletro">Eletrodomésticos</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+
+                    <div class="input-form">
+                        <label for="item-qtd">Quantidade/Volume</label>
+                        <input id="item-qtd" type="text" placeholder="Ex: 3 unidades" required>
+                    </div>
+                </div>
+            </div>
+        </form>
+        
+    </main>
+</body>
+
+</html>
