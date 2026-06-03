@@ -27,6 +27,10 @@ main .filter-container {
     border-radius: 1.2rem;
 }
 
+main .filter-container .select-form {
+    width: 24rem;
+}
+
 main .items-container {
     display: flex;
     justify-content: space-between;
