@@ -22,7 +22,7 @@ main form .form-box {
     flex-direction: column;
     gap: 1.2rem;
 
-    width: 67rem;
+    width: 80rem;
     padding: 2.4rem;
     border: 1px solid var(--color-primary-800);
     border-radius: 1.2rem;
@@ -43,10 +43,17 @@ main form .form-box .form-input-wrap {
     gap: 1.2rem;
 }
 
-main form .form-box .input-form label:has(+ input:required, + textarea:required)::after {
+main form .form-box .input-form label:has(+ input:required, + textarea:required)::after,
+main form .form-box .select-form label:has(+ select:required)::after {
     content: " *";
     color: red;
 }
 
+main form .form-buttons-wrap {
+    display: flex;
+    justify-content: space-between;
+}
 
-
+main form .form-buttons-wrap .action-button {
+    width: 37rem;
+}

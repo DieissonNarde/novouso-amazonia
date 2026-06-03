@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="/src/styles/components/navbar.css">
     <link rel="stylesheet" href="/src/styles/components/select-form.css">
     <link rel="stylesheet" href="/src/styles/components/input-form.css">
+    <link rel="stylesheet" href="/src/styles/components/cancel-button.css">
 
     <title>Cadastro de item - NovoUso Amazônia</title>
 </head>
@@ -91,7 +92,7 @@
                 <div class="form-input-wrap">
                     <div class="select-form">
                         <label for="category">Categoria</label>
-                        <select id="category" name="category">
+                        <select id="category" name="category" required>
                             <option value="" disabled selected>Selecione uma opção</option>
                             <option value="moveis">Móveis</option>
                             <option value="eletro">Eletrodomésticos</option>
@@ -104,6 +105,116 @@
                         <input id="item-qtd" type="text" placeholder="Ex: 3 unidades" required>
                     </div>
                 </div>
+            </div>
+
+            <div class="form-box">
+                <div class="form-title-wrap">
+                    <div>
+                        <img src="/src/assets/icons/EnvironmentFilled.svg" alt="Ícone de localização">
+                        <h3>Localização</h3>
+                    </div>
+                    
+                    <p class="paragraph">Informe o endereço de retirada</p>
+                </div>
+
+                <div class="form-input-wrap">
+                    <div class="input-form">
+                        <label for="item-cep">CEP</label>
+                        <input id="item-cep" type="text" placeholder="Informe o CEP" required>
+                    </div>
+
+                    <div class="select-form">
+                        <label for="item-uf">Estado</label>
+                        <select id="item-uf" name="item-uf" required>
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="RO">Rondônia</option>
+                            <option value="AM">Amazonas</option>
+                            <option value="RR">Roraima</option>
+                            <option value="PA">Pará</option>
+                            <option value="AC">Acre</option>
+                            <option value="AP">Amapá</option>
+                            <option value="TO">Tocantins</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-input-wrap">
+                    <div class="select-form">
+                        <label for="item-city">Cidade</label>
+                        <select id="item-city" name="item-city" required>
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="porto-velho">Porto Velho</option>
+                            <option value="manaus">Manaus</option>
+                            <option value="boa-vista">Boa Vista</option>
+                            <option value="belem">Belém</option>
+                            <option value="rio-branco">Rio Branco</option>
+                            <option value="macapa">Macapá</option>
+                            <option value="palmas">Palmas</option>
+                        </select>
+                    </div>
+
+                    <div class="input-form">
+                        <label for="item-addres">Endereço</label>
+                        <input id="item-addres" type="text" placeholder="Ex: Sua rua, 100" required>
+                    </div>
+                </div>
+
+                <div class="form-input-wrap">
+                    <div class="input-form">
+                        <label for="item-district">Bairro</label>
+                        <input id="item-district" type="text" required>
+                    </div>
+
+                    <div class="input-form">
+                        <label for="item-complement">Complemento</label>
+                        <input id="item-complement" type="text">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-box">
+                <div class="form-title-wrap">
+                    <div>
+                        <img src="/src/assets/icons/DollarCircleFilled.svg" alt="Ícone de localização">
+                        <h3>Oferta</h3>
+                    </div>
+                    
+                    <p class="paragraph">Informe como você deseja receber as ofertas</p>
+                </div>
+
+                <div class="form-input-wrap">
+                    <div class="select-form">
+                        <label for="type-offer">Tipo de oferta</label>
+                        <select id="type-offer" name="type-offer" required>
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="doacao">Doação</option>
+                            <option value="lance-livre">Lance livre</option>
+                            <option value="venda">Venda</option>
+                        </select>
+                    </div>
+
+                    <div class="select-form">
+                        <label for="offer-duration">Duração</label>
+                        <select id="offer-duration" name="offer-duration" required>
+                            <option value="" disabled selected>Selecione uma opção</option>
+                            <option value="30">30 dias</option>
+                            <option value="15">15 dias</option>
+                            <option value="7">7 dias</option>
+                            <option value="1">1 dias</option>
+                        </select>
+                    </div>
+
+                    <div class="input-form">
+                        <label for="offer-value">Valor desejado</label>
+                        <input id="offer-value" type="text" placeholder="R$ 00,00" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-buttons-wrap">
+                <button class="cancel-button" type="">Cancelar</button>
+
+                <button class="action-button" type="submit">Publicar item</button>
             </div>
         </form>
         
