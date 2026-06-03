@@ -1,0 +1,12 @@
+.cancel-button {
+    background-color: var(--background-color-200);
+    padding-block: 1.6rem;
+    width: 20rem;
+    font-family: "Poppins", sans-serif;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-color-500);
+
+    border: 2px solid var(--text-color-500);
+    border-radius: 40px;
+}
