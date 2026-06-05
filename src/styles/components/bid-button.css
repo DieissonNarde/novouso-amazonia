@@ -1,0 +1,33 @@
+.bid-button {
+    background-color: var(--background-color-200);
+    padding: 1.2rem 3.2rem;
+    border-radius:  25px;
+
+    font-family: Poppins, sans-serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.bid-button:hover {
+    color: var(--text-color-200);
+    padding: 1.4rem 3.4rem;
+    border: none;
+}
+
+.accept {
+    border: 2px solid var(--color-green-200);
+    color: var(--color-green-400);
+}
+
+.accept:hover {
+    background: linear-gradient(to right, var(--color-green-200), var(--color-green-400));
+}
+
+.reject {
+    border: 2px solid var(--color-red-200);
+    color: var(--color-red-400);
+}
+
+.reject:hover {
+    background: linear-gradient(to right, var(--color-red-200), var(--color-red-400));
+}
