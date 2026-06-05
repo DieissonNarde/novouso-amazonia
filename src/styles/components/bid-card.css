@@ -1,0 +1,44 @@
+.bid-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+    width: 100%;
+    padding: 1.8rem 2.4rem;
+    background-color: var(--background-color-400);
+    border-radius: 1.2rem;
+}
+
+.bid-card .bid-text-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bid-card .bid-text-wrap .offer-date {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--text-color-500);
+}
+
+.bid-card .bid-offer-wrap, .bid-card .bid-buttons-wrap {
+    display: flex;
+    align-items: center;
+    gap: 2.4rem;
+}
+
+.bid-card .bid-offer-wrap .type-offer {
+    background-color: var(--color-primary-400);
+    padding: 0.8rem 2.4rem;
+    border-radius: 2.4rem;
+
+    font-family: Poppins, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: var(--text-color-200);
+}
+
+.bid-card .bid-offer-wrap .offer-price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-green-200);
+}
