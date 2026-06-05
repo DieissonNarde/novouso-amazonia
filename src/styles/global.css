@@ -76,23 +76,23 @@ h2 {
 
 h3 {
     font-size: 2.4rem;
-    font-weight: bold;
+    font-weight: 600;
 }
 
 h4 {
     font-size: 1.6rem;
-    font-weight: semi-bold;
+    font-weight: 600;
 }
 
 h5 {
     font-size: 1.4rem;
-    font-weight: semi-bold;
+    font-weight: 600;
 }
 
 .display {
     font-family: "PassengersScript";
     font-size: 3.8rem;
-    letter-spacing: 1%;
+    letter-spacing: 2%;
 }
 
 .subtitle,
@@ -114,13 +114,15 @@ p, span, a {
 }
 
 p {
-    font-weight: medium;
     font-size: 1.4rem;
+    font-weight: 500;
     line-height: 140%;
     letter-spacing: 4%;
-    color: var(--text-color-800);
+    color: var(--text-color-500);
 }
 
 .paragraph {
     font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-color-800);
 }
