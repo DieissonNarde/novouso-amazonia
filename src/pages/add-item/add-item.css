@@ -46,7 +46,7 @@ main form .form-box .form-input-wrap {
 main form .form-box .input-form label:has(+ input:required, + textarea:required)::after,
 main form .form-box .select-form label:has(+ select:required)::after {
     content: " *";
-    color: red;
+    color: var(--color-red-200);
 }
 
 main form .form-buttons-wrap {
@@ -56,4 +56,8 @@ main form .form-buttons-wrap {
 
 main form .form-buttons-wrap .action-button {
     width: 37rem;
+}
+
+main form .form-buttons-wrap .cancel-button {
+    width: 20rem;
 }
