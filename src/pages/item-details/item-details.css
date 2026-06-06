@@ -68,6 +68,39 @@ main section.item-offers .title-offers-wrap h2 {
     color: var(--color-secondary-400);
 }
 
+main section.item-offers .title-offers-wrap .action-button {
+    margin-left: auto;
+    padding: 1.4rem 2.4rem;
+}
+
+main section.item-offers .register-offer form {
+    margin-top: 2.4rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+main section.item-offers .register-offer form .form-input-wrap {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.register-offer form .input-form label:has(+ input:required, + textarea:required)::after,
+.register-offer form .select-form label:has(+ select:required)::after {
+    content: " *";
+    color: var(--color-red-200);
+}
+
+main section.item-offers .register-offer .form-button-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+main section.item-offers .register-offer .form-button-wrap .action-button,
+main section.item-offers .register-offer .form-button-wrap .cancel-button {
+    padding: 1.4rem 3.4rem;
+}
+
 main section.item-offers .bid-card-wrap {
     margin-top: 2.4rem;
     height: 84rem;

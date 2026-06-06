@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="/src/styles/components/info-card.css">
     <link rel="stylesheet" href="/src/styles/components/bid-card.css">
     <link rel="stylesheet" href="/src/styles/components/bid-button.css">
+    <link rel="stylesheet" href="/src/styles/components/select-form.css">
+    <link rel="stylesheet" href="/src/styles/components/input-form.css">
+    <link rel="stylesheet" href="/src/styles/components/cancel-button.css">
 
     <title>Detalhes do item - NovoUso Amazônia</title>
 </head>
@@ -201,6 +204,40 @@
                     <h2>Ofertas</h2>
                     <p>Lances recebidas para este item</p>
                 </div>
+
+                <button class="action-button">Fazer um lance</button>
+            </div>
+
+            <div class="register-offer">
+                <form action="">
+                    <div class="form-input-wrap">
+                        <div class="select-form">
+                            <label for="type-bid">Tipo de lance</label>
+                            <select id="type-bid" name="type-bid" required>
+                                <option value="" disabled selected>Selecione uma opção</option>
+                                <option value="pagar-item">Pagar pelo item</option>
+                                <option value="cobrar-retirada">Cobrar pela retirada</option>
+                                <option value="retirar-gratis">Retirar gratuitamente</option>
+                            </select>
+                        </div>
+
+                        <div class="input-form">
+                            <label for="bid-value">Valor</label>
+                            <input id="bid-value" type="text" placeholder="R$ 00,00" required>
+                        </div>
+                    </div>
+
+                    <div class="input-form">
+                        <label for="bid-description">Descrição</label>
+                        <textarea id="bid-description" name="bid-description" rows="4" placeholder="Descreva bem com detalhes o seu item" required></textarea>
+                    </div>
+
+                    <div class="form-button-wrap">
+                        <button class="cancel-button" type="">Cancelar</button>
+
+                        <button class="action-button" type="submit">Enviar lance</button>
+                    </div>
+                </form>
             </div>
 
             <div class="bid-card-wrap">
