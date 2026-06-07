@@ -1,0 +1,79 @@
+main {
+    margin-block: 8rem;
+}
+
+main .display {
+    color: var(--color-green-200);
+    text-align: center;
+}
+
+main .item-data {
+    width: 56rem;
+    margin-top: 4.8rem;
+    margin-inline: auto;
+}
+
+main .item-data .item-title {
+    margin-block: 3.2rem;
+}
+
+main .item-data .item-title h2 {
+    color: var(--color-secondary-400);
+    text-align: center;
+    margin-bottom: 0.8rem;
+}
+
+main .item-data .item-info .info-card-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+main .item-data .item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+}
+
+main .item-data .item-info h3 {
+    color: var(--text-color-500);
+    margin-bottom: 1.2rem;
+}
+
+main .item-terms {
+    width: 56rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.6rem;
+
+    margin-top: 4.8rem;
+    margin-inline: auto;
+    text-align: center;
+}
+
+main .item-terms .paragraph {
+    font-size: 2.4rem;
+    color: var(--text-color-500);
+}
+
+main .item-terms .terms-accept {
+    display: inline-flex;
+    align-items: center;
+}
+
+main .item-terms .terms-accept label {
+    font-family: Nunito, sans-serif;
+    font-size: 1.8rem;
+    color: var(--text-color-800);
+    margin-left: 1.2rem;
+    line-height: 1;
+}
+
+main .item-terms .terms-accept label a {
+    color: var(--color-green-400);
+}
+
+main .item-terms .action-button {
+    margin-top: 1rem;
+    width: 30rem;
+}
