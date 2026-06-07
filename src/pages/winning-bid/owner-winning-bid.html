@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/src/styles/vendor/reset.css">
+    <link rel="stylesheet" href="/src/styles/vendor/input-checkbox.css">
+    <link rel="stylesheet" href="/src/styles/global.css">
+
+    <link rel="stylesheet" href="./winning-bid.css">
+
+    <link rel="stylesheet" href="/src/styles/layouts/header.css">
+
+    <link rel="stylesheet" href="/src/styles/components/navbar.css">
+    <link rel="stylesheet" href="/src/styles/components/action-button.css">
+    <link rel="stylesheet" href="/src/styles/components/back-button.css">
+    <link rel="stylesheet" href="/src/styles/components/bid-card.css">
+    
+    <title>Oferta vencedora - NovoUso Amazônia</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <a href="/">
+                <img src="/src/assets/images/logo-novouso-amazonia.webp" alt="Logo NovoUso Amazônia" class="logo">
+            </a>
+
+            <button class="action-button">
+                <img src="/src/assets/icons/PlusOutlined.svg" alt="Ícone de adição">
+                Adicionar item
+            </button>
+
+            <nav class="navbar">
+                <ul>
+                    <li><a href="/"><img src="/src/assets/icons/BellFilled.svg" alt="Ícone de notificação"></a></li>
+                    <li class="drop-hover">
+                        <a href="#">Dieisson Narde</a>
+                        <div class="drop">
+                            <a href="">Minha conta</a>
+                            <a href="">Histórico</a>
+                            <a href="">Sair da conta</a>
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+        </div>
+    </header>
+
+    <main class="container">
+        <div>
+            <a class="back-button" href="/src/pages/home/home.html">
+                <img src="/src/assets/icons/ArrowLeftOutlined.svg" alt="Ícone de seta para esquerda">
+                Voltar
+            </a>
+        </div>
+
+        <p class="display">Esta foi a oferta vencedora do seu item abaixo.</p>
+
+        <div class="item-data">
+            <img class="main-image" src="/src/assets/images/imagem_principal_do_item.webp" alt="Imagem principal do item">
+
+            <div class="item-title">
+                <h2>Frigideiras de ferro</h2>
+            </div>
+
+            
+            <div class="bid-card">
+                <div class="bid-text-wrap">
+                    <h4>Dieisson Narde</h4>
+                    <span class="offer-date">14/09/2025</span>
+                </div>
+
+                <div class="bid-offer-wrap">
+                    <span class="type-offer">
+                        Retiro de graça
+                    </span>
+
+                    <span class="offer-price">
+                        R$ 100
+                    </span>
+                </div>
+
+                <p class="paragraph">Tenho interesse e posso retirar no local, mas não pago nada pelo item.</p>
+            </div>
+        </div>
+
+        <div class="item-terms">
+            <p class="paragraph">Aceita os termos abaixo para liberar o contato do vencedor.</p>
+
+            <div class="terms-accept">
+                <input type="checkbox" id="accept" name="terms" value="terms-accepted">
+                <label for="accept">Li e aceito os <a href="#">termos da negociação deste item</a></label>
+            </div>
+
+            <button class="action-button">Aceitar os termos</button>
+        </div>
+    </main>
+</body>
+
+</html>
