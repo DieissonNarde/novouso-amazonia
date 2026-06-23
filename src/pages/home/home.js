@@ -1,4 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const apiBaseUrl = "http://localhost:5134";
+
     const itemsContainer = document.querySelector(".items-container");
     const searchInput = document.getElementById("search-items");
     const filterToggleButton = document.querySelector(".filter-items");
@@ -9,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const ufSelect = document.getElementById("uf");
     const citySelect = document.getElementById("city");
 
+    let allItems = [];
     let searchTimeout = null;
 
     function getToken() {
@@ -19,17 +22,21 @@ document.addEventListener("DOMContentLoaded", () => {
         return localStorage.getItem("token") || sessionStorage.getItem("token");
     }
 
-    function normalizeItemsResponse(data) {
+    function normalizeResponse(data) {
         if (Array.isArray(data)) return data;
-        if (Array.isArray(data.items)) return data.items;
-        if (Array.isArray(data.data)) return data.data;
-        if (Array.isArray(data.results)) return data.results;
+        if (Array.isArray(data?.items)) return data.items;
+        if (Array.isArray(data?.data)) return data.data;
+        if (Array.isArray(data?.results)) return data.results;
         return [];
     }
 
     function truncateText(text, maxLength = 140) {
         if (!text) return "";
         return text.length > maxLength ? `${text.slice(0, maxLength).trim()}...` : text;
+    }
+
+    function toText(value) {
+        return String(value ?? "").toLowerCase().trim();
     }
 
     function formatLocation(item) {
@@ -43,19 +50,35 @@ document.addEventListener("DOMContentLoaded", () => {
         return "Localização não informada";
     }
 
-    function getImageUrl(item) {
+    function getImages(item) {
         if (Array.isArray(item.images) && item.images.length > 0) {
-            const firstImage = item.images[0];
-            if (typeof firstImage === "string") return firstImage;
-            if (firstImage?.url) return firstImage.url;
-            if (firstImage?.path) return firstImage.path;
+            return item.images
+                .map((image) => {
+                    if (typeof image === "string") return image;
+                    return image?.url || image?.path || "";
+                })
+                .filter(Boolean);
         }
 
-        if (item.image) return item.image;
-        if (item.imageUrl) return item.imageUrl;
-        if (item.thumbnail) return item.thumbnail;
+        if (Array.isArray(item.photos) && item.photos.length > 0) {
+            return item.photos
+                .map((photo) => {
+                    if (typeof photo === "string") return photo;
+                    return photo?.url || photo?.path || "";
+                })
+                .filter(Boolean);
+        }
 
-        return "/src/assets/images/imagem_do_item.webp";
+        if (item.image) return [item.image];
+        if (item.imageUrl) return [item.imageUrl];
+        if (item.thumbnail) return [item.thumbnail];
+
+        return [];
+    }
+
+    function getImageUrl(item) {
+        const images = getImages(item);
+        return images[0] || "/src/assets/images/imagem_do_item.webp";
     }
 
     function getOfferCount(item) {
@@ -66,15 +89,148 @@ document.addEventListener("DOMContentLoaded", () => {
         return 0;
     }
 
+    function getCategoryName(item) {
+        return item.category?.name || item.categoryName || item.category || "Categoria não informada";
+    }
+
+    function getOwnerName(item) {
+        return item.user?.name || item.owner?.name || "Usuário não informado";
+    }
+
+    function getCreatedAtLabel(item) {
+        if (!item.createdAtUtc && !item.createdAt) {
+            return "";
+        }
+
+        const date = new Date(item.createdAtUtc || item.createdAt);
+        if (Number.isNaN(date.getTime())) return "";
+
+        return date.toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        });
+    }
+
+    function mapCategoryValue(value) {
+        const map = {
+            moveis: "móveis",
+            eletro: "eletrodomésticos",
+            outros: "outros"
+        };
+
+        return map[toText(value)] || toText(value);
+    }
+
+    function mapTypeOfferValue(value) {
+        const map = {
+            doacao: ["1", "donation", "doação"],
+            "lance-livre": ["2", "freethrow", "lance livre"],
+            venda: ["3", "sale", "venda"]
+        };
+
+        return map[toText(value)] || [toText(value)];
+    }
+
+    function getCategoryText(item) {
+        return (
+            item.category?.name ||
+            item.categoryName ||
+            item.category ||
+            item.categoryId ||
+            ""
+        );
+    }
+
+    function getTypeOfferText(item) {
+        return item.typeOffer ?? item.offerType ?? item.offer?.type ?? "";
+    }
+
+    function matchesSearch(item, query) {
+        if (!query) return true;
+
+        const haystack = [
+            item.title,
+            item.name,
+            item.description,
+            getCategoryText(item),
+            getTypeOfferText(item),
+            item.city,
+            item.state,
+            item.neighborhood,
+            item.street
+        ]
+            .map(toText)
+            .join(" ");
+
+        return haystack.includes(query);
+    }
+
+    function matchesCategory(item, selectedValue) {
+        if (!selectedValue) return true;
+
+        const normalized = mapCategoryValue(selectedValue);
+        const categoryText = toText(getCategoryText(item));
+
+        return categoryText.includes(normalized) || categoryText === normalized;
+    }
+
+    function matchesTypeOffer(item, selectedValue) {
+        if (!selectedValue) return true;
+
+        const acceptedValues = mapTypeOfferValue(selectedValue);
+        const itemValue = toText(getTypeOfferText(item));
+
+        return acceptedValues.some((value) => itemValue.includes(value));
+    }
+
+    function matchesState(item, selectedValue) {
+        if (!selectedValue) return true;
+        const itemState = toText(item.state || item.uf || item.location?.state || item.location?.uf);
+        return itemState === toText(selectedValue);
+    }
+
+    function matchesCity(item, selectedValue) {
+        if (!selectedValue) return true;
+        const itemCity = toText(item.city || item.location?.city);
+        return itemCity === toText(selectedValue);
+    }
+
+    function applyFilters(items) {
+        const query = toText(searchInput?.value);
+        const category = categorySelect?.value || "";
+        const typeOffer = typeOfferSelect?.value || "";
+        const state = ufSelect?.value || "";
+        const city = citySelect?.value || "";
+
+        return items.filter((item) => {
+            return (
+                matchesSearch(item, query) &&
+                matchesCategory(item, category) &&
+                matchesTypeOffer(item, typeOffer) &&
+                matchesState(item, state) &&
+                matchesCity(item, city)
+            );
+        });
+    }
+
+    function setLoading() {
+        itemsContainer.innerHTML = `<p class="paragraph">Carregando itens...</p>`;
+    }
+
+    function setError(message = "Erro ao carregar os itens.") {
+        itemsContainer.innerHTML = `<p class="paragraph">${message}</p>`;
+    }
+
     function renderItems(items) {
         itemsContainer.innerHTML = "";
 
         if (!items.length) {
             itemsContainer.innerHTML = `
-        <p class="paragraph empty-state">
-          Nenhum item encontrado para os filtros informados.
-        </p>
-      `;
+                <p class="paragraph empty-state">
+                    Nenhum item encontrado para os filtros informados.
+                </p>
+            `;
             return;
         }
 
@@ -88,95 +244,46 @@ document.addEventListener("DOMContentLoaded", () => {
             const imageUrl = getImageUrl(item);
             const location = formatLocation(item);
             const offersCount = getOfferCount(item);
+            const categoryName = getCategoryName(item);
+            const createdAtLabel = getCreatedAtLabel(item);
+            const ownerName = getOwnerName(item);
+            const metaText = createdAtLabel ? `${categoryName} • ${createdAtLabel}` : categoryName;
 
+            card.dataset.itemId = itemId || "";
             card.innerHTML = `
-        <img src="${imageUrl}" alt="${title}">
-        <div class="item-info">
-          <h3>${title}</h3>
-          <p class="paragraph">${truncateText(description)}</p>
+                <img src="${imageUrl}" alt="${title}">
 
-          <div>
-            <span>${location}</span>
-            <span>${offersCount} oferta${offersCount === 1 ? "" : "s"}</span>
-          </div>
+                <div class="item-info">
+                    <h3>${title}</h3>
+                    <p class="paragraph">${truncateText(description)}</p>
 
-          <button class="btn-details" data-item-id="${itemId}">
-            Ver detalhes
-          </button>
-        </div>
-      `;
+                    <div>
+                        <span>${location}</span>
+                        <span>${offersCount > 0 ? `${offersCount} oferta${offersCount === 1 ? "" : "s"}` : metaText}</span>
+                    </div>
+
+                    <p class="paragraph" style="margin-top: 0.8rem; font-size: 1.3rem;">
+                        ${ownerName}
+                    </p>
+
+                    <button class="btn-details" data-item-id="${itemId}">
+                        Ver detalhes
+                    </button>
+                </div>
+            `;
 
             itemsContainer.appendChild(card);
         });
     }
 
-    function setLoading() {
-        itemsContainer.innerHTML = `<p class="paragraph">Carregando itens...</p>`;
-    }
-
-    function setError(message = "Erro ao carregar os itens.") {
-        itemsContainer.innerHTML = `<p class="paragraph">${message}</p>`;
-    }
-
-    function buildQueryParams() {
-        const params = new URLSearchParams();
-        const search = searchInput.value.trim();
-        const category = categorySelect.value;
-        const typeOffer = typeOfferSelect.value;
-        const uf = ufSelect.value;
-        const city = citySelect.value;
-
-        if (search) params.set("search", search);
-        if (category) params.set("category", category);
-        if (typeOffer) params.set("typeOffer", typeOffer);
-        if (uf) params.set("uf", uf);
-        if (city) params.set("city", city);
-
-        return params;
-    }
-
-    async function loadItems() {
-        setLoading();
-
-        try {
-            const params = buildQueryParams();
-            const token = getToken();
-
-            const headers = {
-                Accept: "application/json"
-            };
-
-            if (token) {
-                headers.Authorization = `Bearer ${token}`;
-            }
-
-            const url = `https://api.seudominio.com/items?${params.toString()}`;
-
-            const response = await fetch(url, {
-                method: "GET",
-                headers
-            });
-
-            if (!response.ok) {
-                throw new Error("Não foi possível buscar os itens.");
-            }
-
-            const data = await response.json();
-            const items = normalizeItemsResponse(data);
-
-            renderItems(items);
-        } catch (error) {
-            console.error(error);
-            setError(error.message || "Erro ao carregar os itens.");
-        }
+    function renderFilteredItems() {
+        const filteredItems = applyFilters(allItems);
+        renderItems(filteredItems);
     }
 
     function handleSearch() {
         clearTimeout(searchTimeout);
-
-        searchTimeout = setTimeout(() => {
-            loadItems();
-        }, 400);
+        searchTimeout = setTimeout(renderFilteredItems, 300);
     }
 
     function clearSelectIfPlaceholder(select) {
@@ -193,8 +300,43 @@ document.addEventListener("DOMContentLoaded", () => {
         if (!clearSelectIfPlaceholder(citySelect)) citySelect.value = "";
     }
 
+    async function loadItems() {
+        setLoading();
+
+        try {
+            const params = new URLSearchParams();
+            params.set("pageNumber", "1");
+            params.set("pageSize", "100");
+
+            const headers = {
+                Accept: "application/json"
+            };
+
+            const token = getToken();
+            if (token) {
+                headers.Authorization = `Bearer ${token}`;
+            }
+
+            const response = await fetch(`${apiBaseUrl}/api/item?${params.toString()}`, {
+                method: "GET",
+                headers
+            });
+
+            if (!response.ok) {
+                throw new Error("Não foi possível buscar os itens.");
+            }
+
+            const data = await response.json();
+            allItems = normalizeResponse(data);
+            renderFilteredItems();
+        } catch (error) {
+            console.error(error);
+            setError(error.message || "Erro ao carregar os itens.");
+        }
+    }
+
     filterToggleButton?.addEventListener("click", () => {
-        filterContainer.classList.toggle("is-open");
+        filterContainer?.classList.toggle("is-open");
     });
 
     searchInput?.addEventListener("input", handleSearch);
@@ -202,15 +344,15 @@ document.addEventListener("DOMContentLoaded", () => {
     [categorySelect, typeOfferSelect, ufSelect, citySelect].forEach((select) => {
         select?.addEventListener("change", () => {
             normalizeEmptyFilters();
-            loadItems();
+            renderFilteredItems();
         });
     });
 
-    itemsContainer.addEventListener("click", (event) => {
+    itemsContainer?.addEventListener("click", (event) => {
         const button = event.target.closest(".btn-details");
-        if (!button) return;
+        const card = event.target.closest(".item-card");
+        const itemId = button?.dataset.itemId || card?.dataset.itemId;
 
-        const itemId = button.dataset.itemId;
         if (!itemId) return;
 
         window.location.href = `/src/pages/item-details/item-details.html?itemId=${itemId}`;
