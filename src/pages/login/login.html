@@ -26,25 +26,30 @@
             <div class="form">
                 <h2>Entrar na sua conta</h2>
 
-                <form action="">
+                <form id="loginForm">
                     <div class="input-form">
                         <label for="email">E-mail</label>
-                        <input id="email" type="email" placeholder="Digite o seu e-mail">
+                        <input id="email" type="email" placeholder="Digite o seu e-mail" required>
                     </div>
 
                     <div class="input-form">
                         <label for="password">Senha</label>
-                        <input id="password" type="password" placeholder="Crie a sua senha">
+                        <input id="password" type="password" placeholder="Crie a sua senha" required>
                     </div>
 
 
                     <p>Esqueceu a senha? <a href="/">Recuperar</a></p>
 
                     <button class="action-button" type="submit">Entrar</button>
+
+                    <p id="message"></p>
                 </form>
             </div>
         </div>
     </main>
+
+    <script src="/src/scripts/utils/auth.js"></script>
+    <script src="/src/pages/login/login.js"></script>
 </body>
 
 </html>
