@@ -20,7 +20,7 @@ form.addEventListener("submit", async (event) => {
     };
 
     try {
-        const response = await fetch("https://sua-api.com/api/login", {
+        const response = await fetch("http://localhost:5134/api/user/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -35,15 +35,22 @@ form.addEventListener("submit", async (event) => {
 
         const data = await response.json();
 
+        if (!data?.token) {
+            throw new Error("Resposta de login sem token.");
+        }
+
         saveToken(data.token);
-        saveUser(data.user);
 
-        message.textContent = "Login realizado com sucesso!";
-        message.style.color = "green";
+        if (data.user && typeof data.user === "object") {
+            saveUser(data.user);
+        }
 
-        console.log("Resposta da API:", data);
+        //message.textContent = "Login realizado com sucesso!";
+        //message.style.color = "green";
 
-        window.location.href = "home.html";
+        //console.log("Resposta da API:", data);
+
+        window.location.href = "/src/pages/home/home.html";
     } catch (error) {
         message.textContent = "E-mail ou senha inválidos.";
         message.style.color = "red";
