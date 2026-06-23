@@ -7,7 +7,7 @@ form.addEventListener("submit", async (event) => {
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const whatsapp = document.getElementById("whatsapp").value.trim();
-    const cpf = document.getElementById("cpf").value.trim();
+    const cpfCnpj = document.getElementById("cpf").value.trim();
     const dateBirth = document.getElementById("date-birth").value.trim();
     const password = document.getElementById("password").value.trim();
 
@@ -21,14 +21,13 @@ form.addEventListener("submit", async (event) => {
         name,
         email,
         whatsapp,
-        cpf,
-        email,
+        cpfCnpj,
         dateBirth,
         password
     };
 
     try {
-        const response = await fetch("https://sua-api.com/api/users", {
+        const response = await fetch("http://localhost:5134/api/user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -46,7 +45,7 @@ form.addEventListener("submit", async (event) => {
         message.textContent = "Cadastro realizado com sucesso!";
         message.style.color = "green";
 
-        console.log("Resposta da API:", data);
+        //console.log("Resposta da API:", data);
         form.reset();
     } catch (error) {
         message.textContent = "Cadastro não realizado.";
