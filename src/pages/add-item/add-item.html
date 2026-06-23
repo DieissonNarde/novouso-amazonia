@@ -54,7 +54,7 @@
         <h2>Adicionar um novo item</h2>
         <p class="paragraph">Dê um novo uso para o que não usa mais.</p>
         
-        <form action="">
+        <form id="addItemForm">
             <div class="form-box">
                 <div class="form-title-wrap">
                     <div>
@@ -65,8 +65,7 @@
                     <p class="paragraph">Adicione até 6 fotos para mostrar o estado do item</p>
                 </div>
                 
-
-                <input type="file" name="item-images" id="item-images">
+                <input type="file" name="item-images" id="item-images" multiple accept="image/*">
             </div>
 
             <div class="form-box">
@@ -212,13 +211,15 @@
             </div>
 
             <div class="form-buttons-wrap">
-                <button class="cancel-button" type="">Cancelar</button>
+                <button id="cancelButton" class="cancel-button" type="button">Cancelar</button>
 
-                <button class="action-button" type="submit">Publicar item</button>
+                <button id="submitButton" class="action-button" type="submit">Publicar item</button>
             </div>
         </form>
-        
     </main>
+
+    <script src="/src/scripts/utils/auth.js"></script>
+    <script src="/src/pages/add-item/add-item.js"></script>
 </body>
 
 </html>
