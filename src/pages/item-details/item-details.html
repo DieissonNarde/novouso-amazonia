@@ -209,7 +209,7 @@
             </div>
 
             <div class="register-offer">
-                <form action="">
+                <form id="bidForm">
                     <div class="form-input-wrap">
                         <div class="select-form">
                             <label for="type-bid">Tipo de lance</label>
@@ -233,9 +233,9 @@
                     </div>
 
                     <div class="form-button-wrap">
-                        <button class="cancel-button" type="">Cancelar</button>
+                        <button id="cancelButton" class="cancel-button" type="button">Cancelar</button>
 
-                        <button class="action-button" type="submit">Enviar lance</button>
+                        <button id="submitButton" class="action-button" type="submit">Enviar lance</button>
                     </div>
                 </form>
             </div>
@@ -319,6 +319,8 @@
             </div>
         </section>
     </main>
-</body>
 
+    <script src="/src/scripts/utils/auth.js"></script>
+    <script src="/src/pages/item-details/item-details.js"></script>
+</body>
 </html>
