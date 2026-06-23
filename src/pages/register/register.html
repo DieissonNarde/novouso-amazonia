@@ -26,49 +26,53 @@
             <div class="form">
                 <h2>Criar a sua conta</h2>
 
-                <form action="">
+                <form id="registerForm">
                     <div class="input-form">
-                        <label for="username">Nome</label>
-                        <input id="username" type="text" placeholder="Digite o seu nome de usuário">
+                        <label for="name">Nome</label>
+                        <input id="name" type="text" placeholder="Digite o seu nome de usuário" required>
                     </div>
                     
                     <div class="input-form">
                         <label for="email">E-mail</label>
-                        <input id="email" type="email" placeholder="Digite o seu e-mail">
+                        <input id="email" type="email" placeholder="Digite o seu e-mail" required>
                     </div>
 
                     <div class="input-form">
                         <label for="whatsapp">WhatsApp</label>
-                        <input id="whatsapp" type="tel" placeholder="Digite o seu número de WhatsApp">
+                        <input id="whatsapp" type="tel" placeholder="Digite o seu número de WhatsApp" required>
                     </div>
                     
                     <div class="input-form">
                         <label for="cpf">CPF</label>
-                        <input id="cpf" type="text" placeholder="000.000.000-00">
+                        <input id="cpf" type="text" placeholder="000.000.000-00" required>
                     </div>
 
                     <div class="input-form">
                         <label for="date-birth">Data de nascimento</label>
-                        <input id="date-birth" type="date">
+                        <input id="date-birth" type="date" required>
                     </div>
 
                     <div class="input-form">
                         <label for="password">Senha</label>
-                        <input id="password" type="password" placeholder="Crie a sua senha">
+                        <input id="password" type="password" placeholder="Crie a sua senha" required>
                     </div>
 
                     <div class="input-form">
                         <label for="confirm-password">Confirmar senha</label>
-                        <input id="confirm-password" type="password" placeholder="Confirme a sua senha">
+                        <input id="confirm-password" type="password" placeholder="Confirme a sua senha" required>
                     </div>
 
                     <p>Já possui conta? <a href="/login">Login</a></p>
 
                     <button class="action-button" type="submit">Criar conta</button>
+
+                    <p id="message"></p>
                 </form>
             </div>
         </div>
     </main>
+
+    <script src="/src/pages/register/register.js"></script>
 </body>
 
 </html>
