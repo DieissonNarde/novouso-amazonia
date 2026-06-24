@@ -7,11 +7,8 @@
 
     <link rel="stylesheet" href="/src/styles/vendor/reset.css">
     <link rel="stylesheet" href="/src/styles/global.css">
-
     <link rel="stylesheet" href="./item-details.css">
-
     <link rel="stylesheet" href="/src/styles/layouts/header.css">
-
     <link rel="stylesheet" href="/src/styles/components/navbar.css">
     <link rel="stylesheet" href="/src/styles/components/action-button.css">
     <link rel="stylesheet" href="/src/styles/components/back-button.css">
@@ -28,29 +25,30 @@
 <body>
     <header class="header">
         <div class="container">
-            <a href="/">
+            <a href="/src">
                 <img src="/src/assets/images/logo-novouso-amazonia.webp" alt="Logo NovoUso Amazônia" class="logo">
             </a>
-            
-            <button class="action-button">
-                <img src="/src/assets/icons/PlusOutlined.svg" alt="Ícone de adição">
-                Adicionar item
-            </button>
-            
+
+            <a href="/src/pages/add-item/add-item.html">
+                <button class="action-button">
+                    <img src="/src/assets/icons/PlusOutlined.svg" alt="Ícone de adição">
+                    Adicionar item
+                </button>
+            </a>
+
             <nav class="navbar">
                 <ul>
                     <li><a href="/"><img src="/src/assets/icons/BellFilled.svg" alt="Ícone de notificação"></a></li>
                     <li class="drop-hover">
-                        <a href="#">Dieisson Narde</a>
+                        <a href="#" data-user-display-name>Minha conta</a>
                         <div class="drop">
                             <a href="">Minha conta</a>
                             <a href="">Histórico</a>
-                            <a href="">Sair da conta</a>
+                            <a href="#" data-logout-link>Sair da conta</a>
                         </div>
                     </li>
                 </ul>
             </nav>
-            
         </div>
     </header>
 
@@ -65,31 +63,30 @@
 
             <div class="item-images">
                 <img class="main-image" src="/src/assets/images/imagem_principal_do_item.webp" alt="Imagem principal do item">
-                
+
                 <div class="item-images-wrap">
                     <img src="" alt="Imagem do item" class="item-image">
-                    <img src="" alt="" class="item-image">
-                    <img src="" alt="" class="item-image">
-                    <img src="" alt="" class="item-image">
-                    <img src="" alt="" class="item-image">
+                    <img src="" alt="Imagem do item" class="item-image">
+                    <img src="" alt="Imagem do item" class="item-image">
+                    <img src="" alt="Imagem do item" class="item-image">
+                    <img src="" alt="Imagem do item" class="item-image">
                 </div>
             </div>
 
             <div class="item-info">
                 <div>
-                    <h1>Frigideiras de ferro</h1>
-                    <p class="paragraph">Estou doando estas 3 frigideiras de ferro que não uso mais. Elas estão amassadas mas ainda estão em boas condições de uso.</p>
+                    <h1 data-item-title>Carregando item...</h1>
+                    <p class="paragraph" data-item-description></p>
                 </div>
-            
-                <div class="info-card-wrap">
+
+                <div class="info-card-wrap" data-section="basic">
                     <div class="info-card">
                         <div>
                             <img src="/src/assets/icons/user-alt.svg" alt="Ícone de usuário">
                         </div>
-
                         <div>
                             <p>Adicionado por</p>
-                            <p class="info-text">Dieisson Narde</p>
+                            <p class="info-text" data-item-owner>-</p>
                         </div>
                     </div>
 
@@ -97,10 +94,9 @@
                         <div>
                             <img src="/src/assets/icons/faBoxOpen.svg" alt="Ícone de caixa">
                         </div>
-
                         <div>
                             <p>Categoria</p>
-                            <p class="info-text">Casa</p>
+                            <p class="info-text" data-item-category>-</p>
                         </div>
                     </div>
 
@@ -108,25 +104,23 @@
                         <div>
                             <img src="/src/assets/icons/InfoCircleFilled.svg" alt="Ícone de info">
                         </div>
-
                         <div>
                             <p>Quantidade</p>
-                            <p class="info-text">3 unidades</p>
+                            <p class="info-text" data-item-quantity>-</p>
                         </div>
                     </div>
                 </div>
-                
+
                 <div>
-                    <h3 class="">Sobre a oferta</h3>
-                    <div class="info-card-wrap">
+                    <h3>Sobre a oferta</h3>
+                    <div class="info-card-wrap" data-section="offer">
                         <div class="info-card">
                             <div>
                                 <img src="/src/assets/icons/CheckCircleFilled.svg" alt="Ícone de check">
                             </div>
-
                             <div>
                                 <p>Tipo da oferta</p>
-                                <p class="info-text">Doação</p>
+                                <p class="info-text" data-item-offer-type>-</p>
                             </div>
                         </div>
 
@@ -134,10 +128,9 @@
                             <div>
                                 <img src="/src/assets/icons/DollarCircleFilled.svg" alt="Ícone de dinheiro">
                             </div>
-
                             <div>
                                 <p>Valor desejado</p>
-                                <p class="info-text">R$ 00,00</p>
+                                <p class="info-text" data-item-offer-value>-</p>
                             </div>
                         </div>
 
@@ -145,26 +138,24 @@
                             <div>
                                 <img src="/src/assets/icons/CalendarFilled.svg" alt="Ícone de calendário">
                             </div>
-
                             <div>
                                 <p>Expira em</p>
-                                <p class="info-text">7 dias</p>
+                                <p class="info-text" data-item-offer-expiration>-</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div>
-                    <h3 class="">Localização</h3>
-                    <div class="info-card-wrap">
+                    <h3>Localização</h3>
+                    <div class="info-card-wrap" data-section="location">
                         <div class="info-card">
                             <div>
                                 <img src="/src/assets/icons/EnvironmentFilled.svg" alt="Ícone de localização">
                             </div>
-
                             <div>
                                 <p>Cidade/UF</p>
-                                <p class="info-text">Porto Velho, RO</p>
+                                <p class="info-text" data-item-city-state>-</p>
                             </div>
                         </div>
 
@@ -172,10 +163,9 @@
                             <div>
                                 <img src="/src/assets/icons/faLocationArrow.svg" alt="Ícone de seta de localização">
                             </div>
-
                             <div>
                                 <p>Bairro</p>
-                                <p class="info-text">Olaria</p>
+                                <p class="info-text" data-item-neighborhood>-</p>
                             </div>
                         </div>
 
@@ -183,10 +173,9 @@
                             <div>
                                 <img src="/src/assets/icons/faHomeLgAlt.svg" alt="Ícone de casa">
                             </div>
-
                             <div>
                                 <p>Endereço</p>
-                                <p class="info-text">Av. Faquar, 0000</p>
+                                <p class="info-text" data-item-address>-</p>
                             </div>
                         </div>
                     </div>
@@ -194,7 +183,7 @@
             </div>
         </section>
 
-        <section class="item-offers">
+        <section class="item-offers" data-item-offers data-is-owner="false">
             <div class="title-offers-wrap">
                 <div>
                     <img src="/src/assets/icons/CommentOutlined.svg" alt="Ícone de balão de comentário">
@@ -202,22 +191,22 @@
 
                 <div>
                     <h2>Ofertas</h2>
-                    <p>Lances recebidas para este item</p>
+                    <p>Lances recebidos para este item</p>
                 </div>
 
-                <button class="action-button">Fazer um lance</button>
+                <button class="action-button" type="button" data-bid-toggle>Fazer um lance</button>
             </div>
 
-            <div class="register-offer">
+            <div class="register-offer" hidden>
                 <form id="bidForm">
                     <div class="form-input-wrap">
                         <div class="select-form">
                             <label for="type-bid">Tipo de lance</label>
                             <select id="type-bid" name="type-bid" required>
                                 <option value="" disabled selected>Selecione uma opção</option>
-                                <option value="pagar-item">Pagar pelo item</option>
-                                <option value="cobrar-retirada">Cobrar pela retirada</option>
-                                <option value="retirar-gratis">Retirar gratuitamente</option>
+                                <option value="1">Pagar pelo item</option>
+                                <option value="2">Retirar gratuitamente</option>
+                                <option value="3">Cobrar pela retirada</option>
                             </select>
                         </div>
 
@@ -229,98 +218,26 @@
 
                     <div class="input-form">
                         <label for="bid-description">Descrição</label>
-                        <textarea id="bid-description" name="bid-description" rows="4" placeholder="Descreva bem com detalhes o seu item" required></textarea>
+                        <textarea id="bid-description" name="bid-description" rows="4" placeholder="Descreva bem com detalhes a sua proposta" required></textarea>
                     </div>
 
                     <div class="form-button-wrap">
                         <button id="cancelButton" class="cancel-button" type="button">Cancelar</button>
-
                         <button id="submitButton" class="action-button" type="submit">Enviar lance</button>
                     </div>
                 </form>
             </div>
 
-            <div class="bid-card-wrap">
-                <div class="bid-card">
-                    <div class="bid-text-wrap">
-                        <h4>Dieisson Narde</h4>
-                        <span class="offer-date">14/09/2025</span>
-                    </div>
-
-                    <div class="bid-offer-wrap">
-                        <span class="type-offer">
-                            Retiro de graça
-                        </span>
-
-                        <span class="offer-price">
-                            R$ 100
-                        </span>
-                    </div>
-
-                    <p class="paragraph">Tenho interesse e posso retirar no local, mas não pago nada pelo item.</p>
-                </div>
-
-                <div class="bid-card">
-                    <div class="bid-text-wrap">
-                        <h4>Dieisson Narde</h4>
-                        <span class="offer-date">14/09/2025</span>
-                    </div>
-
-                    <div class="bid-offer-wrap">
-                        <span class="type-offer">
-                            Retiro de graça
-                        </span>
-
-                        <span class="offer-price">
-                            R$ 100
-                        </span>
-                    </div>
-
-                    <p class="paragraph">Tenho interesse e posso retirar no local, mas não pago nada pelo item.</p>
-                </div>
-
-                <div class="bid-card">
-                    <div class="bid-text-wrap">
-                        <h4>Dieisson Narde</h4>
-                        <span class="offer-date">14/09/2025</span>
-                    </div>
-
-                    <div class="bid-offer-wrap">
-                        <span class="type-offer">
-                            Retiro de graça
-                        </span>
-
-                        <span class="offer-price">
-                            R$ 100
-                        </span>
-                    </div>
-
-                    <p class="paragraph">Tenho interesse e posso retirar no local, mas não pago nada pelo item.</p>
-                </div>
-
-                <div class="bid-card">
-                    <div class="bid-text-wrap">
-                        <h4>Dieisson Narde</h4>
-                        <span class="offer-date">14/09/2025</span>
-                    </div>
-
-                    <div class="bid-offer-wrap">
-                        <span class="type-offer">
-                            Retiro de graça
-                        </span>
-
-                        <span class="offer-price">
-                            R$ 100
-                        </span>
-                    </div>
-
-                    <p class="paragraph">Tenho interesse e posso retirar no local, mas não pago nada pelo item.</p>
-                </div>
+            <div class="bid-card-wrap" data-bids-container>
+                <p class="paragraph">Carregando lances...</p>
             </div>
         </section>
     </main>
 
     <script src="/src/scripts/utils/auth.js"></script>
+    <script src="/src/scripts/services/logout.js"></script>
     <script src="/src/pages/item-details/item-details.js"></script>
+    <script src="/src/pages/item-details/form-bid.js"></script>
 </body>
+
 </html>

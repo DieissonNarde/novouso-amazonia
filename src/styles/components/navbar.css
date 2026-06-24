@@ -1,0 +1,50 @@
+.navbar {
+
+}
+
+.navbar ul {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+
+    list-style-type: none;
+}
+
+.navbar ul li a {
+    color: var(--text-color-800);
+    text-decoration: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.navbar ul li a:hover {
+    color: var(--color-green-400);
+}
+
+.navbar ul li a img {
+    height: 3.2rem;
+    width: auto;
+}
+
+.navbar ul li.drop-hover {
+    position: relative;
+}
+
+.navbar ul li.drop-hover a {
+    padding-inline: 2rem;
+}
+
+.navbar ul .drop-hover .drop {
+    position: absolute;
+    background-color: var(--color-green-200);
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+}
+
+.navbar ul .drop-hover:hover .drop {
+    height: auto;
+    padding: 1rem 0;
+}

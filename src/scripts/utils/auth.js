@@ -31,7 +31,14 @@ function getUserIdFromToken(token) {
         return null;
     }
 
-    return payload.id ?? payload.userId ?? payload.UserId ?? null;
+    return payload.id
+        ?? payload.userId
+        ?? payload.UserId
+        ?? payload.sub
+        ?? payload.nameid
+        ?? payload.NameId
+        ?? payload["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"]
+        ?? null;
 }
 
 function saveUser(user) {

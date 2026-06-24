@@ -24,7 +24,7 @@
 <body>
     <header class="header">
         <div class="container">
-            <a href="/">
+            <a href="/src">
                 <img src="/src/assets/images/logo-novouso-amazonia.webp" alt="Logo NovoUso Amazônia" class="logo">
             </a>
 
@@ -41,7 +41,7 @@
                         <div class="drop">
                             <a href="">Minha conta</a>
                             <a href="">Histórico</a>
-                            <a href="">Sair da conta</a>
+                            <a href="#" data-logout-link>Sair da conta</a>
                         </div>
                     </li>
                 </ul>
@@ -159,6 +159,9 @@
             <button class="action-button">Aceitar os termos</button>
         </div>
     </main>
+    <script src="/src/scripts/utils/auth.js"></script>
+    <script src="/src/scripts/services/logout.js"></script>
+    <script src="/src/pages/winning-bid/owner-winning-bid.js"></script>
 </body>
 
 </html>

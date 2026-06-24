@@ -24,7 +24,7 @@
 <body>
     <header class="header">
         <div class="container">
-            <a href="/">
+            <a href="/src">
                 <img src="/src/assets/images/logo-novouso-amazonia.webp" alt="Logo NovoUso Amazônia" class="logo">
             </a>
             
@@ -41,7 +41,7 @@
                         <div class="drop">
                             <a href="">Minha conta</a>
                             <a href="">Histórico</a>
-                            <a href="">Sair da conta</a>
+                            <a href="#" data-logout-link>Sair da conta</a>
                         </div>
                     </li>
                 </ul>
@@ -93,9 +93,10 @@
                         <label for="category">Categoria</label>
                         <select id="category" name="category" required>
                             <option value="" disabled selected>Selecione uma opção</option>
-                            <option value="1">Móveis</option>
-                            <option value="2">Eletrodomésticos</option>
-                            <option value="3">Outros</option>
+                            <option value="1">Eletrônicos</option>
+                            <option value="2">Roupas</option>
+                            <option value="3">Contrução</option>
+                            <option value="4">Casa</option>
                         </select>
                     </div>
 
@@ -142,13 +143,13 @@
                         <label for="item-city">Cidade</label>
                         <select id="item-city" name="item-city" required>
                             <option value="" disabled selected>Selecione uma opção</option>
-                            <option value="porto-velho">Porto Velho</option>
-                            <option value="manaus">Manaus</option>
-                            <option value="boa-vista">Boa Vista</option>
-                            <option value="belem">Belém</option>
-                            <option value="rio-branco">Rio Branco</option>
-                            <option value="macapa">Macapá</option>
-                            <option value="palmas">Palmas</option>
+                            <option value="Porto Velho">Porto Velho</option>
+                            <option value="Manaus">Manaus</option>
+                            <option value="Boa Vista">Boa Vista</option>
+                            <option value="Belém">Belém</option>
+                            <option value="Rio Branco">Rio Branco</option>
+                            <option value="Macapá">Macapá</option>
+                            <option value="Palmas">Palmas</option>
                         </select>
                     </div>
 
@@ -219,6 +220,7 @@
     </main>
 
     <script src="/src/scripts/utils/auth.js"></script>
+    <script src="/src/scripts/services/logout.js"></script>
     <script src="/src/pages/add-item/add-item.js"></script>
 </body>
 

@@ -111,3 +111,6 @@ main section.item-offers .bid-card-wrap {
     overflow-x: hidden;
     padding-right: 1.2rem;
 }
+.is-hidden {
+    display: none !important;
+}

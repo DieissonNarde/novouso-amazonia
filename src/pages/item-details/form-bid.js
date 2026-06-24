@@ -1,15 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const API_BASE_URL = "http://localhost:5134";
     const form = document.getElementById("bidForm");
-    const submitButton = document.getElementById('submitButton');
+    const submitButton = document.getElementById("submitButton");
     const cancelButton = document.getElementById("cancelButton");
-    const bidList = document.querySelector(".bid-card-wrap");
+    const offersSection = document.querySelector(".item-offers");
 
-    if (cancelButton) {
-        cancelButton.type = "button";
-        cancelButton.addEventListener("click", () => {
-            form.reset();
-            setFeedback("");
-        });
+    if (!form || !offersSection) return;
+
+    const isOwner = () => offersSection.dataset.isOwner === "true";
+    const registerOffer = document.querySelector(".register-offer");
+    const toggleButton = document.querySelector("[data-bid-toggle]");
+
+    if (isOwner()) {
+        if (registerOffer) registerOffer.hidden = true;
+        if (toggleButton) toggleButton.hidden = true;
+        return;
     }
 
     const feedback = document.createElement("p");
@@ -22,23 +27,26 @@ document.addEventListener("DOMContentLoaded", () => {
         feedback.style.color = color;
     }
 
-    function getItemId() {
-        const params = new URLSearchParams(window.location.search);
-        const itemIdFromQuery = params.get("itemId");
+    function getToken() {
+        if (typeof window.getToken === "function") return window.getToken();
+        return localStorage.getItem("token") || sessionStorage.getItem("token");
+    }
 
-        if (itemIdFromQuery) return itemIdFromQuery;
-
-        const itemElement = document.querySelector("[data-item-id]");
-        if (itemElement?.dataset?.itemId) return itemElement.dataset.itemId;
-
+    function getCurrentUserId() {
+        if (typeof window.getUserIdFromToken === "function") {
+            return window.getUserIdFromToken(getToken());
+        }
         return null;
+    }
+
+    function getItemId() {
+        return offersSection.dataset.itemId || new URLSearchParams(window.location.search).get("itemId");
     }
 
     function normalizeMoney(value) {
         if (!value) return 0;
 
-        const normalized = value
-            .trim()
+        const normalized = value.trim()
             .replace(/\s/g, "")
             .replace("R$", "")
             .replace(/\./g, "")
@@ -48,91 +56,28 @@ document.addEventListener("DOMContentLoaded", () => {
         return Number.isNaN(numberValue) ? null : numberValue;
     }
 
-    function formatMoney(value) {
-        return Number(value || 0).toLocaleString("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        });
-    }
-
-    function formatBidType(type) {
-        const map = {
-            "pagar-item": "Pagar pelo item",
-            "cobrar-retirada": "Cobrar pela retirada",
-            "retirar-gratis": "Retirar gratuitamente"
-        };
-
-        return map[type] || type;
-    }
-
-    function formatDate(dateString) {
-        const date = dateString ? new Date(dateString) : new Date();
-
-        return date.toLocaleDateString("pt-BR", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
-        });
-    }
-
-    function appendBidCard(bid) {
-        if (!bidList) return;
-
-        const card = document.createElement("div");
-        card.className = "bid-card";
-
-        const bidderName =
-            bid?.user?.name ||
-            bid?.bidder?.name ||
-            bid?.userName ||
-            "Você";
-
-        const bidDate =
-            bid?.createdAt ||
-            bid?.created_at ||
-            new Date().toISOString();
-
-        const bidType =
-            bid?.type ||
-            bid?.bidType ||
-            document.getElementById("type-bid").value;
-
-        const bidValue =
-            bid?.value ??
-            bid?.amount ??
-            normalizeMoney(document.getElementById("bid-value").value);
-
-        const bidDescription =
-            bid?.description ||
-            document.getElementById("bid-description").value.trim();
-
-        card.innerHTML = `
-      <div class="bid-text-wrap">
-        <h4>${bidderName}</h4>
-        <span class="offer-date">${formatDate(bidDate)}</span>
-      </div>
-
-      <div class="bid-offer-wrap">
-        <span class="type-offer">
-          ${formatBidType(bidType)}
-        </span>
-
-        <span class="offer-price">
-          ${formatMoney(bidValue)}
-        </span>
-      </div>
-
-      <p class="paragraph">${bidDescription}</p>
-    `;
-
-        bidList.prepend(card);
-    }
+    cancelButton?.addEventListener("click", () => {
+        form.reset();
+        setFeedback("");
+        if (registerOffer) registerOffer.hidden = true;
+    });
 
     form.addEventListener("submit", async (event) => {
         event.preventDefault();
 
         const token = getToken();
         const itemId = getItemId();
+        const userId = getCurrentUserId();
+        const type = document.getElementById("type-bid").value;
+        const description = document.getElementById("bid-description").value.trim();
+        const rawValue = document.getElementById("bid-value").value.trim();
+
+        let value = normalizeMoney(rawValue);
+
+        if (offersSection.dataset.isOwner === "true") {
+            setFeedback("O dono do item não pode enviar lance.", "red");
+            return;
+        }
 
         if (!token) {
             setFeedback("Você precisa estar logado para enviar um lance.", "red");
@@ -140,18 +85,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         if (!itemId) {
-            setFeedback("Não foi possível identificar o item deste lance.", "red");
+            setFeedback("Não foi possível identificar o item.", "red");
             return;
         }
 
-        const type = document.getElementById("type-bid").value;
-        const description = document.getElementById("bid-description").value.trim();
-        const rawValue = document.getElementById("bid-value").value.trim();
-
-        let value = normalizeMoney(rawValue);
-
-        if (type === "retirar-gratis") {
-            value = 0;
+        if (!userId) {
+            setFeedback("Não foi possível identificar o usuário.", "red");
+            return;
         }
 
         if (!type || !description) {
@@ -164,10 +104,16 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
+        if (String(type) === "2") {
+            value = 0;
+        }
+
         const payload = {
-            type,
-            value,
-            description
+            itemId: Number(itemId),
+            userId: Number(userId),
+            value: String(value),
+            description,
+            proposalType: Number(type)
         };
 
         try {
@@ -175,28 +121,27 @@ document.addEventListener("DOMContentLoaded", () => {
             submitButton.textContent = "Enviando...";
             setFeedback("");
 
-            const response = await fetch(`https://api.seudominio.com/items/${itemId}/bids`, {
+            const response = await fetch(`${API_BASE_URL}/api/Bid`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Accept": "application/json",
-                    "Authorization": `Bearer ${token}`
+                    Accept: "application/json",
+                    Authorization: `Bearer ${token}`
                 },
                 body: JSON.stringify(payload)
             });
 
             const contentType = response.headers.get("content-type") || "";
-            const data = contentType.includes("application/json")
-                ? await response.json()
-                : null;
+            const data = contentType.includes("application/json") ? await response.json() : null;
 
             if (!response.ok) {
                 throw new Error(data?.message || "Não foi possível enviar o lance.");
             }
 
             setFeedback("Lance enviado com sucesso.", "green");
-            appendBidCard(data?.bid || data);
             form.reset();
+            window.dispatchEvent(new CustomEvent("item-details:refresh"));
+            if (registerOffer) registerOffer.hidden = true;
         } catch (error) {
             setFeedback(error.message || "Erro ao enviar lance.", "red");
             console.error(error);

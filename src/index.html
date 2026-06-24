@@ -1,24 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <link rel="stylesheet" href="/src/styles/vendor/reset.css">
     <link rel="stylesheet" href="/src/styles/global.css">
 
+    <link rel="stylesheet" href="/src/styles/layouts/header.css">
     <link rel="stylesheet" href="/src/styles/components/action-button.css">
 
     <title>NovoUso Amazônia</title>
 </head>
+
 <body>
-    <header>
-        <img src="/src/assets/images/logo-novouso-amazonia.webp" alt="NovoUso Logo" width="200">
-        <h1>NovoUso Amazônia</h1>
+    <header class="header">
+        <div class="container">
+            <a href="/src">
+                <img src="/src/assets/images/logo-novouso-amazonia.webp" alt="Logo NovoUso Amazônia" class="logo">
+            </a>
+
+
+            <a href="/src/pages/login/login.html"><button class="action-button" type="submit">Entrar</button></a>
+            <a href="/src/pages/register/register.html"><button class="action-button" type="submit">Criar
+                    conta</button></a>
+
+        </div>
     </header>
     <div>
-        <a href="/src/pages/login/login.html"><button class="action-button" type="submit">Entrar</button></a>
-        <a href="/src/pages/register/register.html"><button class="action-button" type="submit">Criar conta</button></a>
+        <img src="/src/assets/images/hero.jpg" alt="Hero NovoUso">
     </div>
 </body>
+
 </html>
